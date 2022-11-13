@@ -42,4 +42,12 @@ class LadderCreation(participants: List<String>, destinations: List<String>, run
         result = 31 * result + rung.hashCode()
         return result
     }
+
+    operator fun component1(): Participants {
+        return this.participants
+    }
+
+    operator fun component2(): Destinations {
+        return this.destinations
+    }
 }

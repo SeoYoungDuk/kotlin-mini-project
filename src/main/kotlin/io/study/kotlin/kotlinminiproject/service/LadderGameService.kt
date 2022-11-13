@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service
 @Service
 class LadderGameService {
     fun run(ladderCreation: LadderCreation): List<Result> {
-        val ladder = Ladder(ladderCreation)
+        val ladder = Ladder.create(ladderCreation)
         return ladder.getResults(ladderCreation)
     }
 }

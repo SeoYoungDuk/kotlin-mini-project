@@ -1,6 +1,5 @@
 package io.study.kotlin.kotlinminiproject.domain
 
-import io.study.kotlin.kotlinminiproject.domain.Result
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Assertions.assertNotEquals
 import org.junit.jupiter.api.DisplayName
@@ -11,10 +10,10 @@ internal class LadderTest {
     @DisplayName("Ladder 생성 테스트")
     fun create() {
         val legs1 = Legs(listOf(Leg(left = false, right = true), Leg(left = true, right = false), Leg(left = false, right = true), Leg(left = true, right = false)))
-        val ladder1 = Ladder(listOf(legs1))
+        val ladder1 = Ladder.from(listOf(legs1))
 
         val legs2 = Legs(listOf(Leg(left = false, right = true), Leg(left = true, right = false), Leg(left = false, right = true), Leg(left = true, right = false)))
-        val ladder2 = Ladder(listOf(legs2))
+        val ladder2 = Ladder.from(listOf(legs2))
 
         assertEquals(ladder1, ladder2)
     }
@@ -25,7 +24,7 @@ internal class LadderTest {
         val ladderCreation1 =
                 LadderCreation(listOf("서영덕", "서동성", "선용주", "홍석민"), listOf("화분에 물 주기", "커피 머신 청소", "화장실 비품 채우기", "쓰레기통 비우기"), 3)
 
-        val ladder = Ladder(ladderCreation1)
+        val ladder = Ladder.create(ladderCreation1)
         val legsList: List<Legs> = ladder.getLegs()
         for (legs in legsList) {
             assertEquals(false, legs.get(0).left)
@@ -39,7 +38,7 @@ internal class LadderTest {
         val ladderCreation1 =
                 LadderCreation(listOf("서영덕", "서동성", "선용주", "홍석민"), listOf("화분에 물 주기", "커피 머신 청소", "화장실 비품 채우기", "쓰레기통 비우기"), 3)
 
-        val ladder = Ladder(ladderCreation1)
+        val ladder = Ladder.create(ladderCreation1)
         val legsList: List<Legs> = ladder.getLegs()
         for (legs in legsList) {
             for (i in 0 until legs.size()) {
@@ -55,7 +54,7 @@ internal class LadderTest {
         val ladderCreation1 =
                 LadderCreation(listOf("서영덕", "서동성", "선용주", "홍석민"), listOf("화분에 물 주기", "커피 머신 청소", "화장실 비품 채우기", "쓰레기통 비우기"), 3)
 
-        val ladder = Ladder(ladderCreation1)
+        val ladder = Ladder.create(ladderCreation1)
         val legsList: List<Legs> = ladder.getLegs()
         for (legs in legsList) {
             assertEquals(ladderCreation1.participants.size(), legs.size())
@@ -68,7 +67,7 @@ internal class LadderTest {
         val ladderCreation1 =
                 LadderCreation(listOf("서영덕", "서동성", "선용주", "홍석민"), listOf("화분에 물 주기", "커피 머신 청소", "화장실 비품 채우기", "쓰레기통 비우기"), 3)
 
-        val ladder = Ladder(ladderCreation1)
+        val ladder = Ladder.create(ladderCreation1)
         val legsList: List<Legs> = ladder.getLegs()
 
         assertEquals(ladderCreation1.rung.count, legsList.size)
@@ -81,7 +80,7 @@ internal class LadderTest {
         val legs2 = Legs(listOf(Leg(left = false, right = false), Leg(left = false, right = true), Leg(left = true, right = false), Leg(left = false, right = false)))
         val legs3 = Legs(listOf(Leg(left = false, right = false), Leg(left = false, right = false), Leg(left = false, right = true), Leg(left = true, right = false)))
 
-        val ladder = Ladder(listOf(legs1, legs2, legs3))
+        val ladder = Ladder.from(listOf(legs1, legs2, legs3))
         assertEquals(listOf(1, 2, 3, 4), ladder.getRoutes(1))
         assertEquals(listOf(2, 1, 1, 1), ladder.getRoutes(2))
         assertEquals(listOf(3, 3, 2, 2), ladder.getRoutes(3))
@@ -98,7 +97,7 @@ internal class LadderTest {
         val ladderCreation =
                 LadderCreation(listOf("서영덕", "서동성", "선용주", "홍석민"), listOf("화분에 물 주기", "커피 머신 청소", "화장실 비품 채우기", "쓰레기통 비우기"), 3)
 
-        val ladder = Ladder(listOf(legs1, legs2, legs3))
+        val ladder = Ladder.from(listOf(legs1, legs2, legs3))
         assertEquals(listOf(1, 2, 3, 4), ladder.getRoutes(1))
         assertEquals(listOf(2, 1, 1, 1), ladder.getRoutes(2))
         assertEquals(listOf(3, 3, 2, 2), ladder.getRoutes(3))
